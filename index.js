@@ -1,7 +1,7 @@
 const express = require("express");
 const app = express();
 
-const port = 3001;
+const PORT = process.env.PORT || 3000;
 
 app.get('/echo', (req, res) => {
     const message = req.query['message']
