@@ -19,9 +19,12 @@ sudo iptables -t nat -A PREROUTING -p tcp --dport 80 -j REDIRECT --to-ports 3000
 # remove the redirect
 sudo iptables -t nat -D PREROUTING --source 0/0 --destination 0/0 -p tcp --dport 80 -j REDIRECT --to-ports 3000
 
-node index.js
+SERVER_NAME=EAST_SERVER node index.js
 
 # find out the process
 netstat -ltnp | grep -w ':3000'
 kill <PROCESS ID>
+
+# the other way
+kill -9 $(lsof -t -i:3000)
 ```
